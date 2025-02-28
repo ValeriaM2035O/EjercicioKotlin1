@@ -2,21 +2,33 @@ import kotlin.random.Random
 
 fun main() {
 
-    var sumaDadoN1=0
-    var sumaDadoN2=0
+    var intentosMin = 0
+    val intentosMax = 3
+    var idEmpleado = 0
+    val rango1 = 1000 .. 1999
+    val rango2 = 2000 .. 2999
 
-    println("Tirando dados")
+    while (intentosMin < intentosMax) {
+    println("Ingrese su codigo")
+    var codigo = readln().toInt()
 
-    repeat(4) {
-        val dado1 = Random.nextInt(1, 6)
-        val dado2 = Random.nextInt(1, 6)
+    if (codigo in rango1){
+        println("Bienvenido usuario $idEmpleado")
+        return
+    } else if(codigo in rango2){
 
-        sumaDadoN1 += dado1
-        sumaDadoN2 += dado2
-
-        println("Tirada N° ${it + 1}: Dado 1 = $dado1, Dado 2 = $dado2")
+        print("Bienvenido \n Ingrese su nombre: ")
+        val nombre = readLine().orEmpty()
+        print("Motivo de visita: ")
+        val motivo = readLine().orEmpty()
+        return
+    }else {
+        intentosMin++
+        if (intentosMin < intentosMax) {
+            println("Código incorrecto. Intentos restantes: ${intentosMax - intentosMin}")
+        } else {
+            println("Acceso bloqueado. Demasiados intentos fallidos.")
+        }
+}
     }
-    println("La suma del dado 1 es: $sumaDadoN1")
-
-    println("La suma del dado 2 es: $sumaDadoN2")
 }
